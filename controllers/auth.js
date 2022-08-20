@@ -335,6 +335,7 @@ exports.postEditUser = (req, res) => {
       pageTitle: "user Information",
       errorMessage: errors.array()[0].msg,
       userNickName: req.userNickName,
+      resetMessage:"",
       userName: req.userName,
       // resetMessage: req.flash("error1")[0],
     });
