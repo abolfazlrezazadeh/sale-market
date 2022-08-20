@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge,chrom=1" />
+  <title><%= pageTitle  %></title>
+  <base href="/">
+  <!-- <link rel="stylesheet" href="../public/css/main.css"  type="text/css"/> -->
+  <link rel="stylesheet" href="./css/main.css" type="text/css" />
+  <link rel="stylesheet" href="./css/order.css" type="text/css" />
+
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="../public/css/product.css" type="text/css"/> -->
+  <link rel="stylesheet" href="./css/product.css" type="text/css" />
+  <link rel="stylesheet" href="./css/cart.css" type="text/css" />
+
+</head>
+
+<body style="background-color: #0008;">
+
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <% if(errorMessage){ %>
+              <div class="alert alert-danger" role="alert"> <%= errorMessage %> </div> <!-- flash message -->
+              <% } %>
+              <form action="/signup" method="post" novalidate>
+                <div class="mb-md-5 mt-md-4 pb-5">
+
+                  <h2 class="fw-bold mb-2 text-uppercase">SignUp</h2><br>
+
+                  <div class="form-outline form-white mb-4">
+                    <input name="name" value="<%= oldInput.name %>"
+                     type="text" id="typeEmailX" 
+                     class="form-control form-control-lg <%= validationErrors.find(errors => errors.param === 'email' ? 'alert-danger' : '') %>"
+                      placeholder="Enter your Name" />
+                    <label class="form-label" for="typeNameX">Name</label>
+                  </div>
+
+                  <div class="form-outline form-white mb-4">
+                    <input name="email" value="<%= oldInput.email %>"
+                     type="email" id="typeEmailX" 
+                     class="form-control form-control-lg <%= validationErrors.find(errors => errors.param === 'email' ? 'alert-danger' : '') %>"
+                      placeholder="Enter your email" />
+                    <label class="form-label" for="typeEmailX">Email</label>
+                  </div>
+
+                  <div class="form-outline form-white mb-4">
+                    <input name="password" value="<%= oldInput.password%>" 
+                    type="password" id="typePasswordX" class="form-control form-control-lg <%= validationErrors.find(errors => errors.param === 'password' ? 'alert-danger' : '') %>" 
+                    placeholder="Enter your password" />
+                    <label class="form-label" for="typePasswordX">Password</label>
+                  </div>
+
+                  <div class="form-outline form-white mb-4">
+                    <input name="confirmPassword" value="<%= oldInput.confirmPassword %>" 
+                    type="password" id="typePasswordXx" 
+                    class="form-control form-control-lg <%= validationErrors.find(errors => errors.param === 'confirmPassword' ? 'alert-danger' : '') %>"
+                     placeholder="ReEnter your password" />
+                    <label class="form-label" for="typePasswordX">Confirm Password</label>
+                  </div>
+                  <!-- <input type="hidden" name="_csrf" value="<%= //csrfToken %>"> -->
+                  <button class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up</button>
+
+                  <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                    <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                  </div>
+
+                </div>
+              </form>
+              <div>
+                <p class="mb-0">have an account? <a href="/login" class="text-white-50 fw-bold">Login</a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../includes/end.ejs') %>

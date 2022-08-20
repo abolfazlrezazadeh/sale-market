@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge,chrom=1" />
+  <title><%= pageTitle  %></title>
+  <!-- <base href="/"> -->
+  <!-- <link rel="stylesheet" href="../public/css/main.css"  type="text/css"/> -->
+  <link rel="stylesheet" href="../css/main.css" type="text/css" />
+  <link rel="stylesheet" href="../css/order.css" type="text/css" />
+  <link rel="stylesheet" href="../css/slider.css" type="text/css" />
+  <link rel="stylesheet" href="../css/comments.css" type="text/css" />
+
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="../public/css/product.css" type="text/css"/> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/product.css" type="text/css" />
+  <link rel="stylesheet" href="../css/cart.css" type="text/css" />
+  <style>
+    body {
+      background: rgb(99, 39, 120)
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #BA68C8
+    }
+
+    .profile-button {
+      background: rgb(99, 39, 120);
+      box-shadow: none;
+      border: none
+    }
+
+    .profile-button:hover {
+      background: #682773
+    }
+
+    .profile-button:focus {
+      background: #682773;
+      box-shadow: none
+    }
+
+    .profile-button:active {
+      background: #682773;
+      box-shadow: none
+    }
+
+    .back:hover {
+      color: #682773;
+      cursor: pointer
+    }
+
+    .labels {
+      font-size: 11px
+    }
+
+    .add-experience:hover {
+      background: #BA68C8;
+      color: #fff;
+      cursor: pointer;
+      border: solid 1px #BA68C8
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-5 py-5">
+          <img width="100%" class=" mt-5" src="data:image/png;base64,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">
+          <span class="font-weight-bold"><%= userNickName %></span>
+          <span class="text-black-50"><%= userName %></span>
+          <span> </span>
+        </div>
+      </div>
+      <div class="col-md-5 ">
+        <% if(errorMessage){ %>
+          <div class="alert alert-danger" role="alert"> <%= errorMessage %> </div> <!-- flash message -->
+          <% } %>
+          <% if(resetMessage){ %>
+            <div class="alert alert-success" role="alert"> <%= resetMessage %> </div> <!-- flash message -->
+            <% } %>
+        <form action="/Edit-UserInfo" method="post" novalidate>
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="text-right">Profile Settings</h4>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Name</label>
+                <input type="text" name="name" class="form-control" placeholder="new name" value="">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label class="labels">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="new email" value="">
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <div class="col-md-3 ">
+          <div style="padding:7rem ;" class="d-flex flex-column align-items-center text-center  py-5">
+            <img width="200px" class="mt-5" src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <%- include('../includes/end.ejs') %>

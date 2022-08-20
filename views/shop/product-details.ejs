@@ -1,0 +1,24 @@
+<%- include('../includes/head.ejs') %> <%- include('../includes/heading.ejs') %>
+<%- include('../includes/navbar.ejs') %>
+<main>
+  <div class="container">
+    <div class="centered">
+      <div class="card">
+        <h2 class="card-header"><%= product.title %></h2>
+        <div class="card-body">
+          <img src="/<%= product.imageUrl %> " alt="<%= product.title %>" height="500px" width="500px"/>
+          <div class="text-center">
+            <h4><%= product.description %></h4><br>
+            <h3><%= product.price %> </h3><br>
+          </div>
+          <% if(isAuthenticated){  %>
+          <%- include('../includes/add-to-cart.ejs',{product:product}) %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <%- include('../includes/comments.ejs') %>
+  </div>
+</main>
+<%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

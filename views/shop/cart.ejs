@@ -1,0 +1,53 @@
+<%- include('../includes/head.ejs') %> <%- include('../includes/heading.ejs') %>
+<%- include('../includes/navbar.ejs') %>
+<main>
+  <% if(products.length > 0){ %>
+  <ul class="cart__item-list">
+    <% products.forEach((p)=>{ %>
+    <li class="cart__item">
+      <div>
+        <img src="/<%= p.productId.imageUrl %>" class="img-thumbnail" alt="<%= p.productId.title %>" />
+      </div>
+
+      <div>      <h1><%= p.productId.title %></h1>
+        <h2>تعداد: <%= p.quantity %></h2></div>
+      <h4> جمع کل :<%=p.productId.price * p.quantity %> </h4>
+      <ul>
+        <!-- <li> -->
+          <form action="/decrease-quantity" method="post">
+            <input type="hidden" name="productId" value="<%= p.productId._id %>">
+            <button type="submit" class="btn btn-warning"><b>_</b></button>
+          </form>
+        <!-- </li> -->
+        <li>
+          <form action="/delete-cart" method="post">
+            <input type="hidden" name="productId" value="<%= p.productId._id %>">
+            <button type="submit" class="btn btn-danger">حذف</button>
+          </form>
+        </li>
+        <!-- <li> -->
+          <form action="/increase-quantity" method="post">
+            <input type="hidden" name="productId" value="<%= p.productId._id %>">
+            <button type="submit" class="btn btn-primary"><b>+</b></button>
+          </form>
+        <!-- </li> -->
+      </ul>
+
+    </li>
+    <% }); %>
+  </ul>
+  <div class="row">
+    <div class="container">
+      <div class="centered">
+        <form action="/creat-order" method="post">
+          <button type="submit" class="btn btn-info">سفارش محصول</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <% }else{ %>
+  <h1>سبد خرید خالی است</h1>
+  <% } %>
+</main>
+<%- include('../includes/footer.ejs') %> 
+<%- include('../includes/end.ejs') %>

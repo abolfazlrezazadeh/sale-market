@@ -1,0 +1,85 @@
+<%- include('../includes/head.ejs') %> <%- include('../includes/heading.ejs') %>
+<%- include('../includes/navbar.ejs') %>
+
+<main>
+
+  <div class="container">
+
+      <% if(errorMessage){ %> 
+        <div class="alert alert-danger" role="alert"> <%= errorMessage %> </div> <!-- flash message -->
+        <% } %>  
+   
+    <form action="/admin/<% if(editing ){%>edit-product<%}else{%>add-product<%}%>" method="post" enctype="multipart/form-data">
+        <!-- <input type="hidden" name="_csrf" value="<%= //csrfToken %>"> -->
+      <div class="form-group">
+        <label for="title">عنوان</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          placeholder="نام محصول را وارد کنید"
+          value="<%if(editing ){%><%=product.title%><%}else{%> <%= product.Title %><% } %>  "
+        />
+
+        <div class="form-group">
+          <label for="title">دسته بندی</label>
+          <select id="" name="grouping">
+            <option value="گردنبند">گردنبند</option>
+            <option value="گوشواره">گوشواره</option>
+            <option value="گوشواره و گردنبند">گوشواره و گردنبند</option>
+          </select>
+
+      </div>
+      <div class="form-group">
+        <label for="title">قیمت</label>
+        <input
+          type="text"
+          class="form-control"
+          id="price"
+          name="price"
+          placeholder="قیمت محصول را وارد کنید"
+          value="<%if(editing){%><%=product.price%><%}else{%> <%= product.Price %><% } %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="image">آدرس عکس</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image"
+          name="imageUrl"
+          placeholder="عکس محصول را وارد کنید"
+          onchange="loadfile(this ,'img');"
+          style="display: inline-block;"
+        />
+        <img src="2.png" alt="imagePlace" id="img" width="400px" height="300px" style="display: inline-block;">
+      </div>
+      <div class="form-group">
+        <label for="title">توضیحات</label>
+        <textarea
+          class="form-control"
+          name="description"
+          id=""
+          cols="30"
+          rows="10" 
+        ><%if(editing){%><%=product.description%><%}else{%> <%= product.Description %><% } %></textarea>
+      </div>
+      <% if(editing){ %> 
+      <input type="hidden" value="<%= product._id %>" name="productId">
+      <% } %> 
+      <button type="submit" class="btn btn-primary"><%if(editing) { %>ویرایش محصول <% }else{ %>افزودن محصول<% } %> </button>
+    </form>
+  </div>
+</main>
+<script>
+  function loadfile(x,y){
+      var p = document.getElementById(y);
+      const [file] = x.files;
+      if(file) {
+          p.src = URL.createObjectURL(file);
+      }
+}
+</script>
+<%- include('../includes/footer.ejs') %> 
+<%- include('../includes/end.ejs') %>
