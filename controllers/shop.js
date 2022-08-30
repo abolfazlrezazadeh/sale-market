@@ -73,7 +73,7 @@ exports.postCart = (req, res) => {
       req.user.addToCart(product);
       // req.flash("success","محصول با موفقیت به سبد خرید اضافه شد");
       console.log("product added");
-      res.redirect("/1page-products");
+      res.redirect("/");
     })
     .catch((err) => {
       console.log(err);
