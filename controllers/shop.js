@@ -3,12 +3,14 @@ const Order = require("../models/order");
 const path = require("path");
 const fs = require("fs");
 const pdfDocument = require("pdfkit");
+
 const ITEMS_PER_PAGE = 2;
 exports.getIndex = (req, res) => {
   const page = req.query.page;
-  console.log(page);
+  let totalItems;
+
   Product.find()
-    .skip((page - 1 )* ITEMS_PER_PAGE)
+    .skip((page - 1) * ITEMS_PER_PAGE)
     .limit(ITEMS_PER_PAGE)
     .then((products) => {
       res.render("shop/index", {

@@ -7,24 +7,16 @@ const session = require("express-session");
 const mongodbStore = require("connect-mongodb-session")(session);
 const csurf = require("csurf");
 const flash = require("connect-flash");
-const multer = require('multer');
+const multer = require("multer");
 
 const fileStorage = multer.diskStorage({
-  filename:(req,file,callback)=>{
-    callback(null,new Date().toDateString()+" "+file.originalname)
+  filename: (req, file, callback) => {
+    callback(null, new Date().toDateString() + " " + file.originalname);
   },
-  destination:(req,file,callback)=>{
-    callback(null,"images")
+  destination: (req, file, callback) => {
+    callback(null, "images");
   },
 });
-const fileFilter = (req,file,callback)=>{
-
-  if(file.mimetype === "png" || file.mimetype === "jpg" || file.mimetype === "jpeg"){
-    callback(null,true);
-  }else{
-    callback(null,false);
-  }
-}
 
 const User = require("./models/user");
 const app = express();
@@ -93,12 +85,15 @@ app.use((req, res, next) => {
 //   // next();
 // }); // csrfToken middle ware
 
-const urlencodedParser = bodyParser.urlencoded({extended: false,}); // that changes the datas that posted to json
+const urlencodedParser = bodyParser.urlencoded({ extended: false }); // that changes the datas that posted to json
 
-app.use(multer({   // Use multer   
-  storage:fileStorage,
-  // fileFilter:fileFilter,
-}).single('imageUrl'));
+app.use(
+  multer({
+    // Use multer
+    storage: fileStorage,
+    // fileFilter:fileFilter,
+  }).single("imageUrl")
+);
 
 app.use(urlencodedParser); // that parses incoming request bodies in a middleware before your handlers, available under the req.body property.
 app.use("/admin", urlencodedParser, adminRouter);
@@ -110,7 +105,7 @@ app.use("/signup", urlencodedParser, authRouter);
 app.use("/login", urlencodedParser, authRouter);
 app.use("/reset", urlencodedParser, authRouter);
 app.use(express.static(path.join(__dirname, "public"))); // my static files(images and else) in public folder
-app.use("/images",express.static(path.join(__dirname, "images"))); // for uploden files
+app.use("/images", express.static(path.join(__dirname, "images"))); // for uploden files
 app.use(flash()); //flash
 
 app.use("/admin", adminRouter);
